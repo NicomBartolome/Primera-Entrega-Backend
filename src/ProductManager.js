@@ -15,7 +15,7 @@ export class ProductManager{
 
     GenID = () => {
         if(this.productos.length > 0){
-            this.productos.id++
+            this.productos.id = this.productos.length + 1
         }else{
             this.productos.id = 1
         }
@@ -23,19 +23,21 @@ export class ProductManager{
         return this.productos.id
     }
 
-    addProduct = (title,description,price,thumbnail,code,stock) => {
+    addProduct = (title,description,code,price,status,stock,category,thumbnail) => {
         const NewItem = {
             id:this.GenID(),
             title,
             description,
-            price,
-            thumbnail,
             code,
-            stock
+            price,
+            status,
+            stock,
+            category,
+            thumbnail
         };
 
         if(this.productos.find(codigo => codigo.code == code)){
-            console.log("ERROR: El producto ya existe")
+            return "ERROR: El producto ya existe"
         }else{
             this.productos.push(NewItem)
             fs.writeFileSync(this.path,JSON.stringify(this.productos,null,3))
@@ -76,6 +78,7 @@ export class ProductManager{
                 const DelBuscado = this.productos.find(idBuscado => idBuscado.id === id)
                 const Eliminado = this.productos.filter(Del => Del != DelBuscado)
                 fs.writeFileSync(this.path,JSON.stringify(Eliminado,null,3))
+                return true
             }else{
                 console.log("ID no encontrado")
             }
