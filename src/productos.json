@@ -13,9 +13,12 @@
       "title": "producto prueba5",
       "description": "Este es un producto prueba",
       "price": "200",
-      "thumbnail": "Sin imagen",
-      "code": "abc1234",
-      "stock": "25"
+      "status": true,
+      "stock": 200,
+      "category": "Electronica",
+      "thumbnail": [
+         "1,2,3"
+      ]
    },
    {
       "id": 3,
@@ -34,7 +37,7 @@
       "id": 4,
       "title": "Titulo 233",
       "description": "Probando",
-      "code": "Codigo 12344666",
+      "code": "codigo nuevo de prueba",
       "price": 500,
       "status": true,
       "stock": 200,

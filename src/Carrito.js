@@ -43,13 +43,11 @@ export class Carrito{
         }
 
         let CarritoExistente = this.cart.find(idC => idC.idCart == idCt)
-        console.log(CarritoExistente)
         if(CarritoExistente.products.length === 0){
             CarritoExistente.products.push(NuevoProducto)
             fs.writeFileSync(this.path,JSON.stringify(this.cart,null,3))
             console.log("OK: Producto carrito correctamente")
         }else{
-            console.log("ahora si papa")
             if(CarritoExistente.products[0].product == idProducto){
                 CarritoExistente.products[0].quantity++
             }else{
@@ -58,23 +56,11 @@ export class Carrito{
             fs.writeFileSync(this.path,JSON.stringify(this.cart,null,3))
             
         }
-
-        /* if(this.cart.find(idC => idC.idCart == idCt)){
-            let CarritoExistente = this.cart.find(idC => idC.idCart == idCt)
-            CarritoExistente.products[quantity] + 1
-            console.log(CarritoExistente)
-        }else{
-            this.cart.push(NuevoProducto)
-            fs.writeFileSync(this.path,JSON.stringify(this.cart,null,3))
-            console.log("OK: Producto carrito correctamente")
-        } */
-
     }
 
     getCartByID = (id) => {
 
         if(this.cart.find(idBuscado => idBuscado.idCart === id)){
-            console.log("Si")
             return this.cart.find(idBuscado => idBuscado.idCart === id)
         }else{
             return "ID no encontrado"
